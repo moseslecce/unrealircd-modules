@@ -45,20 +45,14 @@ int joindeop_hook_join(aClient *cptr, aClient *sptr, aChannel *chptr, char *parv
 	
 	if (!IsOper(sptr))
 	{
-		//sendto_realops("%s is joining %s and not an oper", sptr->name, chptr->chname);
-		
-		/* appropriated from m_svsmode.c, why do_cmd didn't like me I have nfi.. */
 		for (cm = chptr->members; cm; cm = cm->next)
 		{
-			//sendto_realops("Comparing %s to %s", cm->cptr->name, sptr->name);
 			if (cm->cptr->name == sptr->name)
 			{
-				//sendto_realops("Match found.");
 				if (cm->flags & CHFL_CHANOP)
 				{
 					Membership *mb;
 					
-					//sendto_realops("Match is opped, deopping.");
 					mb = find_membership_link(cm->cptr->user->channel, chptr);
 
 					sendto_channel_butserv(chptr, sptr, ":%s MODE %s %s %s", me.name, chptr->chname, "-o", cm->cptr->name);
