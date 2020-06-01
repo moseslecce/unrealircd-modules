@@ -23,18 +23,18 @@ ModuleHeader MOD_HEADER = {
         "unrealircd-5", // Modversion
 };
 
-MOD_INIT(joindeop)
+MOD_INIT()
 {
   HookAdd(modinfo->handle, HOOKTYPE_LOCAL_JOIN, 0, joindeop_hook_join);
 	return MOD_SUCCESS;
 }
 
-MOD_LOAD(joindeop)
+MOD_LOAD()
 {
 	return MOD_SUCCESS;
 }
 
-MOD_UNLOAD(joindeop)
+MOD_UNLOAD()
 {
 	return MOD_SUCCESS;
 }
